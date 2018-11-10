@@ -9,6 +9,7 @@
  - syntax highlighting
  - basic compiler linting
  - automatic formatting
+ - snippets
 
 ## Automatic Formatting
 
