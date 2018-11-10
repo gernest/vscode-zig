@@ -17,3 +17,21 @@ To enable automatic formatting, the `zig.formatCommand` property must be
 configured in your settings. This should be the command to run `zig fmt`, which
 can is found on the current [stage2
 compiler](https://github.com/ziglang/zig#stage-2-build-self-hosted-zig-from-zig-source-code).
+
+
+## planned features
+
+- [ ] whow hovers
+- [ ] code completion
+- [ ] diagnosis
+- [ ] function and method signature help
+- [ ] go to definition
+- [ ] find all references to a symbol
+- [ ] highlight occurance of a synbol in a document
+- [ ] show all sybol definintions within a document
+- [ ] show all sybol definintions in a folder
+- [ ] possible actions on errors or warning
+- [ ] code lens
+- [ ] rename symbol
+- [ ] format source code in editor
+- [ ] incrementally Format Code as the User Types
