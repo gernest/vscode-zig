@@ -20,6 +20,9 @@
     },
     {
       "include": "#numbers"
+    },
+    {
+      "include": "#support"
     }
   ],
   "repository": {
@@ -47,7 +50,7 @@
         },
         {
           "name": "keyword.constant.default.zig",
-          "match": "\\b(null|undefined|this)\\b"
+          "match": "\\b(null|undefined)\\b"
         },
         {
           "name": "keyword.constant.bool.zig",
@@ -170,6 +173,15 @@
         {
           "name": "constant.numeric.binary.zig",
           "match": "\\b0b[01_]+([ui](8|16|32|64|128|s|size))?\\b"
+        }
+      ]
+    },
+    "support": {
+      "patterns": [
+        {
+          "comment": "Built-in functions",
+          "name": "support.function.builtin.zig",
+          "match": "@(addWithOverflow|ArgType|atomicLoad|bitCast|breakpoint|alignCast|alignOf|cDefine|cImport|cInclude|cUndef|canImplicitCast|clz|cmpxchgWeak|cmpxchgStrong|compileError|compileLog|ctz|popCount|divExact|divFloor|divTrunc|embedFile|export|tagName|TagType|errorName|errorReturnTrace|fence|fieldParentPtr|field|frameAddress|import|inlineCall|newStackCall|intToPtr|IntType|maxValue|memberCount|memberName|memberType|memcpy|memset|minValue|mod|mulWithOverflow|noInlineCall|bitOffsetOf|byteOffsetOf|OpaqueType|panic|ptrCast|ptrToInt|rem|returnAddress|setCold|setRuntimeSafety|setEvalBranchQuota|setFloatMode|setGlobalLinkage|setGlobalSection|shlExact|This|shlWithOverflow|shrExact|sizeOf|sqrt|subWithOverflow|intCast|floatCast|intToFloat|floatToInt|boolToInt|errSetCast|truncate|typeId|typeInfo|typeName|typeOf|atomicRmw|bytesToSlice|sliceToBytes|intToError|errorToInt|intToEnum|enumToInt|setAlignStack|handle)\\b(?=\\()"
         }
       ]
     }
