@@ -21,15 +21,15 @@ compiler](https://github.com/ziglang/zig#stage-2-build-self-hosted-zig-from-zig-
 
 ## planned features
 
-- [ ] whow hovers
+- [ ] show hovers
 - [ ] code completion
 - [ ] diagnosis
 - [ ] function and method signature help
 - [ ] go to definition
 - [ ] find all references to a symbol
-- [ ] highlight occurance of a synbol in a document
-- [ ] show all sybol definintions within a document
-- [ ] show all sybol definintions in a folder
+- [ ] highlight occupance of a symbol in a document
+- [ ] show all symbol definitions within a document
+- [ ] show all symbol definitions in a folder
 - [ ] possible actions on errors or warning
 - [ ] code lens
 - [ ] rename symbol
