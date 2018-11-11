@@ -47,7 +47,7 @@
         },
         "package import ": {
             "prefix": "imp",
-            "body": "const ${1:name}=@import(\"${2:path}\";",
+            "body": "const ${1:name}=@import(\"${2:path}\");",
             "description": "Snippet for @import"
         }
     }
