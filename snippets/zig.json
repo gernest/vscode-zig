@@ -44,6 +44,11 @@
             "prefix": "tb",
             "body": "test \"${1:Name}\"  {\n    $0\n}",
             "description": "Snippet for test block"
+        },
+        "package import ": {
+            "prefix": "imp",
+            "body": "const ${1:name}=@import(\"${2:path}\";",
+            "description": "Snippet for @import"
         }
     }
 }
