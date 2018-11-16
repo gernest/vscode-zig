@@ -32,12 +32,12 @@
         },
         "private struct ": {
             "prefix": "str",
-            "body": "const ${1:Name} = struct.{$0};",
+            "body": "const ${1:Name} = struct{$0};",
             "description": "Snippet for private struct definition"
         },
         "public struct ": {
             "prefix": "pstr",
-            "body": "pub const ${1:Name} = struct.{$0};",
+            "body": "pub const ${1:Name} = struct{$0};",
             "description": "Snippet for public struct definition"
         },
         "test block ": {
