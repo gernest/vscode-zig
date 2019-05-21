@@ -37,10 +37,15 @@ export function runZigOutline(opts: ZigOutlineOptions): Promise<ZigOutlineDeclar
         const config = vscode.workspace.getConfiguration('zig');
         const hoodiePath = config.get<string>('hoodiePath') || 'hoodie';
         const options = {
-            cmdArguments: ['outline', opts.fileName],
+            cmdArguments: ['outline', opts.document ? '-modified' : opts.fileName],
             notFoundText: 'Could not find hoodie. Please add zig to your PATH or specify a custom path to the zig binary in your settings.',
         };
-        return execCmd(hoodiePath, options).then(({ stdout }) => {
+        const cmd = execCmd(hoodiePath, options);
+        if (opts.document) {
+            cmd.stdin.write(opts.document.getText());
+            cmd.stdin.end();
+        }
+        return cmd.then(({ stdout }) => {
             const result = stdout.toString();
             const decl = <ZigOutlineDeclaration[]>JSON.parse(result);
             return resolve(decl)
