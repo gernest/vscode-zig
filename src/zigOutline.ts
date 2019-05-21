@@ -29,6 +29,9 @@ export interface ZigOutlineOptions {
 	 */
     document?: vscode.TextDocument;
 
+    /**
+     * A callback used to filter results from go-outline tool
+     */
     filter?: (decl: ZigOutlineDeclaration) => boolean;
 }
 
