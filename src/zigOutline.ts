@@ -76,7 +76,7 @@ export function convertToCodeSymbols(
             symbolRange :
             new vscode.Range(startPosition, document.lineAt(startPosition.line).range.end);
         const symbolInfo = new vscode.DocumentSymbol(
-            label,
+            decl.type === 'test' ? `test "${label}"` : label,
             decl.type,
             zigKindToCodeKind[decl.type],
             symbolRange,
