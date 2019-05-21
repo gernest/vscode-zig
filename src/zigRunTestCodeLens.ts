@@ -6,7 +6,6 @@
 'use strict';
 
 import vscode = require('vscode');
-import path = require('path');
 import { CancellationToken, CodeLens, Command, TextDocument } from 'vscode';
 import { ZigDocumentSymbolProvider } from './zigOutline';
 import { getTestFunctions } from './testUtils';
@@ -25,6 +24,7 @@ export class ZigRunTestCodeLensProvider implements vscode.CodeLensProvider {
             this.getCodeLensForPackage(document, token),
             this.getCodeLensForFunctions(config, document, token)
         ]).then(([pkg, fns]) => {
+            logger.clear();
             let res: any[] = [];
             if (pkg && Array.isArray(pkg)) {
                 res = res.concat(pkg);
@@ -35,8 +35,7 @@ export class ZigRunTestCodeLensProvider implements vscode.CodeLensProvider {
             return res;
         }).catch(e => {
             logger.clear();
-            logger.appendLine(e.toString());
-            logger.show();
+            logger.appendLine('outline: ' + e.toString());
             return null;
         });
     }
