@@ -42,10 +42,16 @@ export class ZigRunTestCodeLensProvider implements vscode.CodeLensProvider {
     }
 
     private async getCodeLensForPackage(document: TextDocument, token: CancellationToken): Promise<CodeLens[]> {
-        const documentSymbolProvider = new ZigDocumentSymbolProvider();
+        var hasPackageTests = false;
+        const documentSymbolProvider = new ZigDocumentSymbolProvider((decl) => {
+            if (decl.type == "test") {
+                hasPackageTests = true;
+            }
+            return true;
+        });
         const symbols = await documentSymbolProvider.provideDocumentSymbols(document, token);
         const pkg = symbols[0];
-        if (!pkg) {
+        if (!hasPackageTests) {
             return;
         }
         const range = pkg.range;

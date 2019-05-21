@@ -28,6 +28,8 @@ export interface ZigOutlineOptions {
 	 * Document to be parsed. If not provided, saved contents of the given fileName is used
 	 */
     document?: vscode.TextDocument;
+
+    filter?: (decl: ZigOutlineDeclaration) => boolean;
 }
 
 export function runZigOutline(opts: ZigOutlineOptions): Promise<ZigOutlineDeclaration[]> {
@@ -51,6 +53,9 @@ export function runZigOutline(opts: ZigOutlineOptions): Promise<ZigOutlineDeclar
 
 export async function documentSymbols(opts: ZigOutlineOptions): Promise<vscode.DocumentSymbol[]> {
     const decls = await runZigOutline(opts);
+    if (opts.filter) {
+        return convertToCodeSymbols(opts.document, decls.filter(opts.filter));
+    }
     return convertToCodeSymbols(opts.document, decls);
 }
 
@@ -96,10 +101,12 @@ const zigKindToCodeKind: { [key: string]: vscode.SymbolKind } = {
 };
 
 export class ZigDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
+    constructor(private filter?: (ZigOutlineDeclaration) => boolean) { }
     public provideDocumentSymbols(document: vscode.TextDocument, token: vscode.CancellationToken): Thenable<vscode.DocumentSymbol[]> {
         const options: ZigOutlineOptions = {
             fileName: document.fileName,
             document,
+            filter: this.filter,
         };
         return documentSymbols(options);
     }
