@@ -71,7 +71,14 @@
 					"description": "Set a custom path to the Zig binary. Defaults to 'zig' in your PATH."
 				}
 			}
-		}
+		},
+		"commands": [
+			{
+				"command": "zig.test.file",
+				"title": "Zig: Test File",
+				"description": "Runs all  tests in the current file."
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
