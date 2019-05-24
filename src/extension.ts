@@ -4,7 +4,7 @@ import ZigCompilerProvider from './zigCompilerProvider';
 import { ZigFormatProvider, ZigRangeFormatProvider } from './zigFormat';
 import { ZigRunTestCodeLensProvider } from "./zigRunTestCodeLens";
 import { ZigDocumentSymbolProvider } from "./zigOutline";
-import { cancelRunningTests, zigTestCurrentFile, testAtCursor } from "./zigTest";
+import { cancelRunningTests, zigTestCurrentFile, testAtCursor } from "./testing";
 const ZIG_MODE: vscode.DocumentFilter = { language: 'zig', scheme: 'file' };
 
 export function activate(context: vscode.ExtensionContext) {
