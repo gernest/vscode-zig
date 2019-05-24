@@ -69,8 +69,9 @@ export class ZigRunTestCodeLensProvider implements vscode.CodeLensProvider {
         const testPromise = getTestFunctions(document, token).then(testFunctions => {
             testFunctions.forEach(func => {
                 const runTestCmd: Command = {
-                    title: 'run test',
+                    title: 'run this test',
                     command: 'zig.test.cursor',
+                    arguments: [{ functionName: func.name }]
                 };
                 codelens.push(new CodeLens(func.range, runTestCmd));
             });
