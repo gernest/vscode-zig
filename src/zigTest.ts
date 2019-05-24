@@ -65,32 +65,6 @@ export function zigTestCurrentFile(args: string[]): Thenable<boolean> {
 
 
 
-// export function zigTest(testconfig: TestConfig): Thenable<boolean> {
-//     return new Promise<boolean>((resolve, reject) => {
-//         // We do not want to clear it if tests are already running, as that could
-//         // lose valuable output.
-//         if (runningTestProcesses.length < 1) {
-//             outputChannel.clear();
-//         }
-//         if (!testconfig.background) {
-//             outputChannel.show(true);
-//         }
-//         const config = vscode.workspace.getConfiguration('zig');
-//         const zigPath = config.get<string>('zigPath') || 'zig';
-//         const options: ExecCmdOptions = {
-//             cmdArguments: ['test', testconfig.fileName],
-//             notFoundText: 'Could not find zig. Please add zig to your PATH or specify a custom path to the zig binary in your settings.',
-//             onStdout: (data) => { outputChannel.appendLine(data) },
-//             onStderr: (data) => { outputChannel.appendLine(data) },
-//         };
-//         const cmd = execCmd(zigPath, options);
-//         runningTestProcesses.push(cmd);
-//         cmd.then(() => resolve()).catch(() => reject())
-//     });
-// }
-/**
- * Reveals the output channel in the UI.
- */
 export function showTestOutput() {
     outputChannel.show(true);
 }
@@ -123,7 +97,11 @@ export function zigTest(testconfig: TestConfig): Thenable<boolean> {
             outputChannel.show(true);
         }
 
-        const args: Array<string> = ['test', testconfig.fileName];
+        var args: Array<string> = ['test', testconfig.fileName];
+        if (testconfig.functions != null) {
+            args.push('--test-filter');
+            args = args.concat(testconfig.functions);
+        }
         const config = vscode.workspace.getConfiguration('zig');
         const zigPath = config.get<string>('zigPath') || 'zig';
         const testType = 'tests';
@@ -161,4 +139,40 @@ export function zigTest(testconfig: TestConfig): Thenable<boolean> {
         });
         runningTestProcesses.push(tp);
     });
+}
+
+
+export function testAtCursor(args: any) {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+        vscode.window.showInformationMessage('No editor is active.');
+        return;
+    }
+
+    editor.document.save().then(async () => {
+        try {
+            const testFunctions = await getTestFunctions(editor.document, null);
+            // We use functionName if it was provided as argument
+            // Otherwise find any test function containing the cursor.
+            const testFunctionName = args && args.functionName
+                ? args.functionName
+                : testFunctions.filter(func => func.range.contains(editor.selection.start))
+                    .map(el => el.name)[0];
+            if (!testFunctionName) {
+                vscode.window.showInformationMessage('No test function found at cursor.');
+                return;
+            }
+            await runTestAtCursor(editor, testFunctionName, args);
+        } catch (err) {
+            console.error(err);
+        }
+    });
+}
+
+async function runTestAtCursor(editor: vscode.TextEditor, testFunctionName: string, args: any) {
+    const testConfig: TestConfig = {
+        fileName: editor.document.fileName,
+        functions: [testFunctionName],
+    };
+    await zigTest(testConfig);
 }

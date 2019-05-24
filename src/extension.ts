@@ -4,7 +4,7 @@ import ZigCompilerProvider from './zigCompilerProvider';
 import { ZigFormatProvider, ZigRangeFormatProvider } from './zigFormat';
 import { ZigRunTestCodeLensProvider } from "./zigRunTestCodeLens";
 import { ZigDocumentSymbolProvider } from "./zigOutline";
-import { cancelRunningTests, zigTestCurrentFile } from "./zigTest";
+import { cancelRunningTests, zigTestCurrentFile, testAtCursor } from "./zigTest";
 const ZIG_MODE: vscode.DocumentFilter = { language: 'zig', scheme: 'file' };
 
 export function activate(context: vscode.ExtensionContext) {
@@ -49,6 +49,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.commands.registerCommand('zig.test.file', (args) => {
         zigTestCurrentFile(args);
+    }));
+
+    context.subscriptions.push(vscode.commands.registerCommand('zig.test.cursor', (args) => {
+        testAtCursor(args);
     }));
 
 }

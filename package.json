@@ -77,6 +77,11 @@
 				"command": "zig.test.file",
 				"title": "Zig: Test File",
 				"description": "Runs all  tests in the current file."
+			},
+			{
+				"command": "zig.test.cursor",
+				"title": "Zig: Test Cursor",
+				"description": "Runs test under the cursor."
 			}
 		]
 	},
