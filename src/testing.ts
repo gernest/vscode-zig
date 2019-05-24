@@ -7,7 +7,7 @@ import path = require('path');
 import util = require('util');
 import vscode = require('vscode');
 
-import { ZigDocumentSymbolProvider } from './zigOutline';
+import { ZigDocumentSymbolProvider } from './outline';
 import { detectProjectRoot } from "./zigUtil";
 import { getTestFunctions } from "./testUtils";
 

@@ -7,7 +7,7 @@
 
 import vscode = require('vscode');
 import { CancellationToken, CodeLens, Command, TextDocument } from 'vscode';
-import { ZigDocumentSymbolProvider } from './zigOutline';
+import { ZigDocumentSymbolProvider } from './outline';
 import { getTestFunctions } from './testUtils';
 
 

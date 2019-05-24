@@ -1,5 +1,5 @@
 import vscode = require('vscode');
-import { documentSymbols, ZigOutlineOptions } from "./zigOutline";
+import { documentSymbols, ZigOutlineOptions } from "./outline";
 
 export function getTestFunctions(doc: vscode.TextDocument, token: vscode.CancellationToken): Thenable<vscode.DocumentSymbol[]> {
     const opts: ZigOutlineOptions = {

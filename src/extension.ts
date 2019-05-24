@@ -1,9 +1,9 @@
 'use strict';
 import * as vscode from 'vscode';
-import ZigCompilerProvider from './zigCompilerProvider';
-import { ZigFormatProvider, ZigRangeFormatProvider } from './zigFormat';
-import { ZigRunTestCodeLensProvider } from "./zigRunTestCodeLens";
-import { ZigDocumentSymbolProvider } from "./zigOutline";
+import ZigCompilerProvider from './compiler';
+import { ZigFormatProvider, ZigRangeFormatProvider } from './format';
+import { ZigRunTestCodeLensProvider } from "./codelens";
+import { ZigDocumentSymbolProvider } from "./outline";
 import { cancelRunningTests, zigTestCurrentFile, testAtCursor } from "./testing";
 const ZIG_MODE: vscode.DocumentFilter = { language: 'zig', scheme: 'file' };
 
