@@ -106,6 +106,7 @@ const zigKindToCodeKind: { [key: string]: vscode.SymbolKind } = {
     'test': vscode.SymbolKind.Function,
     'function': vscode.SymbolKind.Function,
     'struct': vscode.SymbolKind.Struct,
+    'field': vscode.SymbolKind.Field,
 };
 
 export class ZigDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
