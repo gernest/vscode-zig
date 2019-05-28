@@ -16,6 +16,7 @@ export interface ZigOutlineDeclaration {
     children?: ZigOutlineDeclaration[];
     signature?: ZigOutlineRange;
     comment?: ZigOutlineRange;
+    isPublic: boolean,
 }
 export interface ZigOutlineOptions {
 	/**
