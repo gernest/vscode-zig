@@ -102,6 +102,7 @@ const zigKindToCodeKind: { [key: string]: vscode.SymbolKind } = {
     'enum': vscode.SymbolKind.Enum,
     'import': vscode.SymbolKind.Namespace,
     'const': vscode.SymbolKind.Constant,
+    'var': vscode.SymbolKind.Variable,
     'variable': vscode.SymbolKind.Variable,
     'union': vscode.SymbolKind.Interface,
     'test': vscode.SymbolKind.Function,
