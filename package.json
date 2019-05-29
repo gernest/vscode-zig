@@ -69,6 +69,11 @@
 					"type": "string",
 					"default": null,
 					"description": "Set a custom path to the Zig binary. Defaults to 'zig' in your PATH."
+				},
+				"zig.zigFmt": {
+					"type": "string",
+					"default": null,
+					"description": "tool to run for formatting zig source code"
 				}
 			}
 		},
