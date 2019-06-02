@@ -55,7 +55,6 @@ export function zigTestCurrentFile(args: string[]): Thenable<boolean> {
         return getTestFunctions(editor.document, null).then(testFunctions => {
             const testConfig: TestConfig = {
                 fileName: editor.document.fileName,
-                functions: testFunctions.map(sym => sym.name),
             };
             return zigTest(testConfig);
         })
